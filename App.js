@@ -1,4 +1,4 @@
-import styles from './styles'; // Importando da sua pasta styles
+import styles from './styles'; 
 import React, { useState } from 'react';
 import {
   View,
@@ -11,18 +11,17 @@ import {
 } from 'react-native';
 
 export default function App() {
-  // --- ESTADOS DE AUTENTICAÇÃO ---
+
   const [verificador, setVerificador] = useState(false);
   const [usuario, setUsuario] = useState('');
   const [cpf, setcpf] = useState('');
   const usuarioCorreto = 'usuarioMassa';
   const cpfCorreto = '11111111111';
-
-  // --- ESTADOS DA LISTA DE TAREFAS ---
+  
   const [novaTarefa, setNovaTarefa] = useState('');
   const [lista, setLista] = useState([]);
 
-  // --- FUNÇÃO DE LOGIN (TELA 1) ---
+  
   function verificadorcpf() {
     if (cpf === cpfCorreto && usuario === usuarioCorreto) {
       setVerificador(true);
@@ -30,10 +29,7 @@ export default function App() {
       Alert.alert('Erro', 'Usuário ou CPF incorretos');
     }
   }
-
-  // --- FUNÇÕES DA LISTA (TELA 2) ---
-  
-  // 1. ADICIONAR TAREFA
+ 
   function adicionarTarefa() {
     if (novaTarefa.trim() === '') {
       Alert.alert('Aviso', 'Digite o nome da tarefa');
@@ -48,12 +44,12 @@ export default function App() {
     setNovaTarefa('');
   }
 
-  // 2. REMOVER TAREFA
+
   function removerItem(id) {
     setLista(lista.filter((item) => item.id !== id));
   }
 
-  // 3. MARCAR COMO CONCLUÍDA
+ 
   function marcarConcluida(id) {
     setLista(
       lista.map((item) =>
@@ -62,13 +58,12 @@ export default function App() {
     );
   }
 
-  // 4. CONTADOR DE TAREFAS CONCLUÍDAS
   const totalConcluidas = lista.filter(item => item.concluida).length;
 
   return (
     <View style={styles.containerGeral}>
       {verificador ? (
-        /* --- TELA 2: LISTA DE TAREFAS --- */
+        
         <View style={{ flex: 1 }}>
           <Text style={styles.titulo}>Minhas Tarefas</Text>
           
@@ -89,7 +84,7 @@ export default function App() {
           <FlatList
             data={lista}
             keyExtractor={(item) => item.id}
-            // 5. MENSAGEM ALTERNATIVA (LISTA VAZIA)
+            
             ListEmptyComponent={
               <View style={styles.boxVazio}>
                 <Text style={styles.textoVazio}>Nenhuma tarefa cadastrada ainda! ✨</Text>
@@ -117,7 +112,7 @@ export default function App() {
           <Button title="Sair" color="red" onPress={() => setVerificador(false)} />
         </View>
       ) : (
-        /* --- TELA 1: LOGIN --- */
+     
         <View>
           <Text style={styles.titulo}>Login</Text>
           <View style={styles.container}>
