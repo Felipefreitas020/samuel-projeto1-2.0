@@ -74,7 +74,7 @@ export default function App() {
               value={novaTarefa}
               onChangeText={setNovaTarefa}
             />
-            <Button title="Add" onPress={adicionarTarefa} />
+            <Button title="Adicionar tarefa" onPress={adicionarTarefa} />
           </View>
 
           <Text style={styles.contadorTexto}>
